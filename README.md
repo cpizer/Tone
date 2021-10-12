@@ -37,26 +37,6 @@ Unzip the folder and rename it to `Tone`, then move it to your `arduinosketchfol
 
 ----
 
-## Hardware Connections/Requirements ##
-
-  * Just connect the digital pin to a speaker (with a resistor - say 1K - in line), and the other side of the speaker to ground (GND).
-
-<table border="0"><tr><td>
-<a href="http://www.flickr.com/photos/roguerobotics/5579703277/" title="Tone-Arduino-Connections by Rogue Robotics, on Flickr"><img src="http://farm6.static.flickr.com/5295/5579703277_3ed8d18103.jpg" width="322" height="470" alt="Tone-Arduino-Connections" />
-</a></td>
-<td>
-<a href="http://www.flickr.com/photos/roguerobotics/5579703257/" title="Tone-Wiring-Connections by Rogue Robotics, on Flickr"><img src="http://farm6.static.flickr.com/5293/5579703257_9b8feb5db5.jpg" width="393" height="490" alt="Tone-Wiring-Connections" /></a></td>
-</tr>
-</table>
-
-  * You can use a potentiometer to control the volume.  Use a 10K Ohm potentiometer (variable resistor) in line with the 1K Ohm resistor connected to the speaker.
-
-  * Using this library will affect usage of the PWM outputs, so be aware.
-
-  * Also, although it's the last timer to be allocated, timer 0 (which is used for `millis()` among other things) will be affected if used.
-
-----
-
 ## Library Usage ##
 
 ### Instantiation/Creation ###
@@ -82,9 +62,18 @@ void setup(void)
    * _*`frequency`*_ is in Hertz, and the _*`duration`*_ is in milliseconds.
    * _*`duration`*_ is optional.  If _*`duration`*_ is not given, tone will play continuously until _*`stop()`*_ is called.
    * `play()` is [non-blocking](http://en.wikipedia.org/wiki/Non-blocking_synchronization).  Once called, `play()` will return immediately. If _*`duration`*_ is given, the tone will play for that amount of time, and then stop automatically.
+ * `playNPulses(`_*`frequency`*_`, `_*`pulses`*_`)` - play a tone until the defined amount of pulses was generated
+   * _*`frequency`*_ is in Hertz.
+   * _*`duration`*_ defines the count of pulses that is generated until the generation stops automatically.
+   * * `playNPulses()` is [non-blocking](http://en.wikipedia.org/wiki/Non-blocking_synchronization).  Once called, `playNPulses()` will return immediately.
  * `stop()` - stop playing a tone.
+ * `resetCounter()` - reset the instance' counter to 0.
 
 ### Constants ###
+
+Depending on the preferences, the pulses are counted on either their positive or negative edge. Per default, positive edges are counted. The following identifiers can be used to control the behaviour:
+
+`#TONE_COUNT_POSITIVE_EDGE` and `#TONE_COUNT_NEGATIVE_EDGE`
 
 Below is a list of constant values of frequencies for notes.  (These are included in the library).
 
