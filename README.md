@@ -8,6 +8,10 @@ This is an Arduino Library to produce square-wave of the specified frequency (an
 
 A duration can optionally be specified, otherwise the wave continues until `stop()` is called.
 
+A count of pulses can be specified after which the pulse generation stops and the count of pulses that were generated since their last `reset()` can be polled.
+The count can be incremented on either the positive-edge or the negative edge, depending on the identifier defined by the user.
+Using those features, this library is suitable for commanding STEP/DIR stepper drivers.
+
 The pin can be connected to a piezo buzzer or other speaker to play tones.
 
 Be sure to try out the RTTTL (RingTone Text Transfer Language) example!
