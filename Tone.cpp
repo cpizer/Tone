@@ -733,30 +733,35 @@ void Tone::stop()
 #if !defined(__AVR_ATmega8__)
     case 0:
       TIMSK0 &= ~(1 << OCIE0A);
+      timer0_pin_low = true;
       break;
 #endif
     case 1:
       TIMSK1 &= ~(1 << OCIE1A);
+      timer1_pin_low = true;
       break;
     case 2:
       TIMSK2 &= ~(1 << OCIE2A);
+      timer2_pin_low = true;
       break;
 
 #if defined(__AVR_ATmega1280__)
     case 3:
       TIMSK3 &= ~(1 << OCIE3A);
+      timer3_pin_low = true;
       break;
     case 4:
       TIMSK4 &= ~(1 << OCIE4A);
+      timer4_pin_low = true;
       break;
     case 5:
       TIMSK5 &= ~(1 << OCIE5A);
+      timer5_pin_low = true;
       break;
 #endif
   }
 
   digitalWrite(_pin, 0);
-  timer0_pin_low = true;
 }
 
 
